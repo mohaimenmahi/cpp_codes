@@ -26,6 +26,29 @@ void append(int roll) {
     }
 }
 
+void delete_node(int roll)
+{
+	node *current_node=root;
+	node *previous_node=NULL;
+	while(current_node->roll!=roll) //Searching node 
+	{
+		previous_node=current_node; //Save the previous node
+		current_node=current_node->next;
+	}
+	if(current_node==root) //Delete root
+    {
+		node *temp=root; //save root in temporary variable
+		root=root->next; //move root forward
+		delete(temp); //free memory
+	}
+	else //delete non-root node
+	{
+		previous_node->next=current_node->next; //previous node points the current node's next node 
+		delete(current_node); //free current node
+	}
+	
+}
+
 void print() {
     node *current_node = root;
     while(current_node != NULL) {
